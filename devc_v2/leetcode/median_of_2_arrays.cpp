@@ -21,10 +21,11 @@ public:
             {
             	
             if(nums1_size%2==0){
-            	
+            	cout<<"three";
                 return nums1[nums1_size/2] + nums1[nums1_size/2 + 1];
             }
             else{
+            	cout<<"four";
                 return nums1[nums1_size/2];
             }    
         }
@@ -50,32 +51,32 @@ public:
         while(k!=end_counter && i< nums1_size && j< nums2_size){
             if(nums1[i]<nums2[j]){
                 new_array.push_back(nums1[i++]);
-                // k++;
+                 k++;
                 
             }
             else{
                 new_array.push_back(nums2[j++]);
-                // k++;
+                 k++;
                 
             }
+        }
             
-            while((int)i<nums1_size && i<end_counter){
+            while((int)i<nums1_size && k<end_counter){
                 new_array.push_back(nums1[i++]);
-                // k++;
             }
-            while((int)j<nums2_size && j<end_counter){
+            while((int)j<nums2_size && k<end_counter){
                 new_array.push_back(nums2[j++]);
                 // k++;
             }
-        }
+        
         
         
         if((int)med_ind.size()==1){
-        	
+        	cout<<"one";
             return new_array[end_counter];
         }
         
-        return new_array[end_counter]+new_array[end_counter+1];
+        return (new_array[end_counter-1]+new_array[end_counter-2])/2;
     }
 };
 
@@ -86,7 +87,10 @@ int main()
 	num1.push_back(1);
 	num1.push_back(2);
 	vector<int> num2;
-	num2.push_back(3);
+	num2.push_back(6);
+	num2.push_back(7);
+	num2.push_back(4);
+	num2.push_back(4);
 	num2.push_back(4);
 	cout<<s.findMedianSortedArrays(num1, num2);
 	}
