@@ -87,11 +87,11 @@ int main(){
 //	insert_node(root, "abcde", 0);
 	insert_node(root, "abcefgh", 0);
 //	insert_node(root, "def", 0);
-//	display_all(root->children);
+	display_all(root->children);
 //	bool s = search(root, "abcefgh", 0);
 //	cout<<"s = "<<s;
 	
-	cout<<delete_trie(root, "abcefgh", 0);
-	cout<<delete_trie(root, "abcd", 0);
+//	cout<<delete_trie(root, "abcefgh", 0);
+//	cout<<delete_trie(root, "abcd", 0);
 	return 0;
 }
