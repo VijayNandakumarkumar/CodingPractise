@@ -32,7 +32,9 @@ int longest_length_of_consecutive_ones(vector<vector<int> > &v) {
 		for(int j=0;j<col;j++){
 			if(v[i][j] == 1) {
 				count = 1;
-				if ((j>0) && (v[i][j-1] != 1)) {
+				if ((j>0) && (v[i][j-1] == 1)) {
+				
+				} else {
 					int c = j + 1;
 					while ((c<col) && (v[i][c] == 1)) {
 						count++;
