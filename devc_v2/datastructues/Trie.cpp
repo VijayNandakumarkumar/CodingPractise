@@ -70,7 +70,7 @@ bool delete_trie(TrieNode current, string word, int index){
 	}
 	char ch = word[index];
 	TrieNode n = (current->children)[ch];
-	if(ch == NULL){
+	if(n == NULL){
 		return false;
 	}
 	bool shouldDeleteWord = delete_trie(n, word, index+1);
