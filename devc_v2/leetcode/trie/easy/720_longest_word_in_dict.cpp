@@ -79,7 +79,7 @@ bool searchRecursiveLetterByLetter(TrieNode current, string word, int index) {
 		return false;
 	}
 	
-	if (!(n->isEOF)) {
+	if (!(n->isEOF)) { //each letter is a word here so EOF must be true for each letter.
 		return false;
 	}
 	
