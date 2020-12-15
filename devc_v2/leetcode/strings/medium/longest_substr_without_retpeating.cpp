@@ -56,3 +56,27 @@ int main() {
 	
 	return 0;
 }
+
+/* the above solution wont work because we are not considering all the possible substrings here.
+Correct solution is below using sliding window - optimal solution.
+*/
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int i =0, j=0;
+        int n = s.length();
+        set<char> st;
+        int maxlen = 0;
+        while(i<n && j<n) {
+            
+            if(st.find(s[j]) == st.end()) {
+                st.insert(s[j++]);
+                maxlen = max(maxlen, j-i);
+            } else {
+                st.erase(s[i++]);
+            }
+        }
+        return maxlen;
+    }
+};
