@@ -2,7 +2,7 @@
  using namespace std;
  
  #define Maxchars 256
- 
+//the below solution wont work for str == "yaav". So check the next funtion it'll work. 
  string findSubString(string str){
  	int dist_count = 0, n = str.length();
  	bool visited[Maxchars]={false};
@@ -35,8 +35,28 @@
 	 return str.substr(start_index, min_window);
  }
  
+string longestSubStr(string str) {
+     int i = 0, j = 0;
+     int n = str.length();
+     set<char> s;
+     int start_ind = 0, end_ind = 0, max_len=0;
+     while(i<n && j<n) {
+         if (s.find(str[j]) == s.end()) {
+             s.insert(str[j++]);
+             start_ind = i;
+             end_ind = j;
+             max_len = max(max_len, j - i);
+         } else {
+             s.erase(str[i++]);
+         }
+     }
+     cout<<max_len<<"i = "<<start_ind<<" j = "<<end_ind<<"\n";
+     return str.substr(start_ind, end_ind);
+ }
+
  int main(){
  	string str = "yyayyyyayyyjjjiaaijvvvjjjjiijjjijiiiaaaavijay";
- 	cout<<findSubString(str);
+ 	//cout<<findSubString(str);
+        cout<<longestSubStr(str);
 	 return 0;
  }
