@@ -23,7 +23,7 @@ bool hasPairWithSum(vector<int> &data, int sum){
 
 
 int main(){
-	vector<int> v{1, 4, 4, 1};
+	vector<int> v{1, 2, 4, 4};
 	cout<<hasPairWithSum(v, 8);
 	
 	return 0;

@@ -17,7 +17,7 @@ bool hasPairWithSum(vector<int> &data, int sum){
 
 
 int main(){
-	vector<int> v{1, 2, 4, 4};
+	vector<int> v{1, 4, 4, 2};
 	cout<<hasPairWithSum(v, 8);
 	
 	return 0;
