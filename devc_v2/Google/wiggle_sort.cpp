@@ -1,3 +1,46 @@
+/*
+Leetcode: 280.
+*/
+
+//Approach 1:
+//Similar to approach 2 just added one more if check for the odd indices.
+
+#include<bits/stdc++.h>
+using namespace std;
+
+//imporved solution
+
+int main(){
+	vector<int> a;
+	a.push_back(3);
+	a.push_back(5);
+	a.push_back(2);
+	a.push_back(7);
+	a.push_back(8);
+	a.push_back(7);
+	
+	for(int i=0;i<a.size()-1;i++){
+		int temp;
+		if((i%2==0) && (a[i]>a[i+1])){
+			temp = a[i];
+			a[i]=a[i+1];
+			a[i+1]=temp;
+		} else if (((i % 2) != 0) && (a[i] < a[i+1])) {
+		    temp = a[i];
+			a[i]=a[i+1];
+			a[i+1]=temp;
+		}
+	}
+	vector<int>::iterator it;
+	for(it=a.begin();it!=a.end();it++){
+		cout<<*it;
+	}
+	return 0;
+}
+
+//Approad 2:
+//Just checks for the even indices and comapres its values with the next index value if greater then swap.
+
 #include<bits/stdc++.h>
 using namespace std;
 
