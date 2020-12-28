@@ -1,3 +1,8 @@
+/*
+Leetcode: 285.
+*/
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -40,17 +45,17 @@ Node insert(Node root, int data){
 	return root;
 }
 
-int min_left(Node n){
+Node min_left(Node n){
 	if(n==NULL){
-		return -1;
+		return n;
 	}
 	while(n->left!=NULL){
 		n = n->left;
 	}
-	return n->left->data;
+	return n;
 }
 
-int inorder_successor(Node n){
+Node inorder_successor(Node n){
 	if(n->right!=NULL){
 		return min_left(n->right);
 	}
@@ -58,9 +63,11 @@ int inorder_successor(Node n){
 		Node p=n->parent;
 		while((n!=p->left)&&(p!=NULL)){
 			n=p;
+                        if (p->parent == NULL) {
+                           return NULL;
 			p=p->parent;
 		}
-		return p->data;
+		return p;
 	}
 }
 void disp(Node root){
@@ -81,8 +88,12 @@ void disp(Node root){
 	root = insert(root, 14);     
   	temp = root->left->left; 
 //  	disp(root);
-  	cout<<inorder_successor(temp); 
-  
-  
+  	Node succ = inorder_successor(temp); 
+  	if (succ == NULL) {
+		cout<<"-1";
+	} else {
+		cout<<succ->data;
+	}
+	
  	return 0;
  }
