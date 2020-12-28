@@ -1,6 +1,11 @@
+/*
+Leetcode: 733.
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
-
+//modified on dec, 28, 2020.
+// Add no work case, i.e., when the given pixel if of the new color then no work to do here.
 int a[][3]={{1,1,1},{1,1,0},{1,0,1}};
 
 bool isSafe(int i, int j, int c1, int color){
