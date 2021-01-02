@@ -1,3 +1,10 @@
+
+/*
+
+Leetcode: 346 - Skiding window problem, lil diff approach than the answer here. Please check 346 question.
+
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 int main(){

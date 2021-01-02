@@ -1,3 +1,32 @@
+/*
+
+Leetcode: 266.
+
+*/
+
+
+//Approach 1: Simple and will work for all cases.
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+    string s = "abb";
+    vector<int> v(128, 0);
+    vector<int>::iterator it;
+    for(int i = 0;i<s.length();i++) {
+        v[s[i]]++;
+    }
+    int count = 0;
+    for(it = v.begin();it!=v.end();it++) {
+        count += *it % 2;
+    }
+	cout<<(count<=1);
+	return 0;
+}
+
+
 #include<bits/stdc++.h>
 
 using namespace std;
