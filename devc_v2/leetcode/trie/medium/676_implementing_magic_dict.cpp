@@ -68,7 +68,7 @@ void insertRecursive(TrieNode current, string word, int index) {
 
 bool searchRecursive(TrieNode current, string word, int index, int replaceAttemptLeft) {
 	if (index == word.length()) {
-		return current->isEOF;
+		return current->isEOF && replaceAttemptLeft == 0;
 	}
 	char ch = word[index];
 	TrieNode n = (current->children)[ch];
