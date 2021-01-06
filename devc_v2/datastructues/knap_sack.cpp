@@ -1,3 +1,10 @@
+
+/*
+
+Check own implementation in algo and data structures.
+
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 

@@ -8,9 +8,9 @@ int tsp(int s){
 			v.push_back(i);
 		}
 	}
-	int k=s;
 	int min_path = INT_MAX;
 	do{
+		int k = s;
 		int current_path_weight=0;
 		for(int i=0;i<v.size();i++){
 			current_path_weight+=graph[k][v[i]];
