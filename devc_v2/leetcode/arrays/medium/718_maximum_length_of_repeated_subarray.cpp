@@ -20,10 +20,10 @@ The repeated subarray with maximum length is [3, 2, 1].
 
 
 int findLength(vector<int>& A, vector<int>& B) {
-        return longestCommonSubsequences(A, B);
+        return longestCommonString(A, B);
     }
     
-    int longestCommonSubsequences(vector<int>& text1, vector<int>& text2) {
+    int longestCommonString(vector<int>& text1, vector<int>& text2) {
         int row = text1.size();
         int col = text2.size();
         vector<vector<int> > dp(row + 1, vector<int> (col + 1, 0));
