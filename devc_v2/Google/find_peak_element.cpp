@@ -21,6 +21,28 @@ Explanation: Your function can return either index number 1 where the peak eleme
 
 */
 
+// same optimised bin search solution but with recursion.
+
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        return findBinPeak(0, nums.size()-1, nums);
+    }
+    int findBinPeak(int start, int end, vector<int>& nums) {
+        if (start >= end) {
+            return start;
+        }
+        
+        int mid = (start + end) / 2;
+        
+        if (nums[mid] < nums[mid+1]) {
+            return findBinPeak(mid + 1, end, nums);
+        }
+        return findBinPeak(start, mid, nums);
+    }
+};
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
