@@ -22,6 +22,23 @@ Total number of matches = 3 + 2 + 1 = 6.
 
 */
 
+Solution 1: Iteration.
+
+int numberOfMatches(int n) {
+        int count = 0;
+        while (n > 1) {
+            if (n%2 == 0) {
+                count += n/2;
+                n = n/2;
+            } else {
+                count += (n - 1)/2;
+                n = (n - 1)/2 + 1;
+            }
+        }
+        return count;
+    }
+
+Solution 2: Recursion.
 
 class Solution {
 public:
