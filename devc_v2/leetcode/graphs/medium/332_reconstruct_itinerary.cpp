@@ -68,3 +68,27 @@ public:
 
 //Solution-2: Instead of multiset priority queue can be used.
 
+
+//Solution-3: DFS
+
+void dfs(string src, vector<string> &v, map<string, multiset<string>> &m) {
+        while(!m[src].empty()) {
+            string dest = *(m[src].begin());
+            m[src].erase(m[src].begin()); //not using string value to delet4e because it's multiset and there may be multiple values of same dest. so use it.
+            dfs(dest, v, m);
+        }
+        v.push_back(src);
+    }
+    
+    vector<string> findItinerary(vector<vector<string>>& tickets) {
+        map<string, multiset<string>> m;
+        for (int i = 0;i< tickets.size();i++)  {
+            m[tickets[i][0]].insert(tickets[i][1]);
+        }
+        
+        vector<string> v;
+
+        dfs("JFK", v, m);
+        reverse(v.begin(), v.end());
+        return  v;
+    }
