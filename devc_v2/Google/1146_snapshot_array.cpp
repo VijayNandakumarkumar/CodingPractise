@@ -24,6 +24,43 @@ snapshotArr.get(0,0);  // Get the value of array[0] with snap_id = 0, return 5
 
 */
 
+//Solution - 1 Optimal
+map<map>
+
+ map<int, map<int,int>> v;
+    int len;
+    int snaps;
+    SnapshotArray(int length) {
+        len = length;
+        snaps = 0;
+    }
+    
+    void set(int index, int val) {
+        v[index][snaps] = val;
+    }
+    
+    int snap() {
+        snaps += 1;
+        return snaps - 1;
+    }
+    
+    int get(int index, int snap_id) {
+        auto it = v[index].upper_bound(snap_id); // ptr next immediate element after snap_id
+        if (it == v[index].begin()) return 0; // no elements in map
+        // else dec ptr 1
+        --it;
+        return it->second;
+    }
+    
+    
+};
+
+
+//Solution - 2 sub optimal (O(n))
+
+vector<vector>>
+
+
 class SnapshotArray {
 public:
     vector<int> v;

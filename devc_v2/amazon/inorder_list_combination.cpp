@@ -1,5 +1,31 @@
 //Current solution below is with string, so convert vector to string and use.
 
+//My Solution
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+void printInterleaved(string s1, string s2, int im, int m, int in, int n, string current) {
+    
+    if (current.length() == m + n) {
+        cout<<current<<"\n";
+        return;
+    }
+    
+    for (int i=im; i<m; i++) {
+        current.push_back(s1[i]);
+        printInterleaved(s1, s2, i + 1, m, in, n, current);
+        current.pop_back();
+    }
+    
+    for (int i=in; i<n; i++) {
+        current.push_back(s2[i]);
+        printInterleaved(s1, s2, im, m, i + 1, n, current);
+        current.pop_back();
+    }
+}
+
 #include<bits/stdc++.h>;
 
 using namespace std;
