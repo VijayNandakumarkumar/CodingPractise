@@ -33,7 +33,31 @@ Input: s = "A", numRows = 1
 Output: "A"
 
 */
+// From leet code solutions: O(n) but extra space.
+string convert(string str, int numRows) {
+        if (numRows == 1 || (str.length() < numRows)) return str;
+        vector<string> s;
+        for(int i = 0; i< numRows;i++) {
+            s.push_back("");
+        }
+        bool goingDown = false;
+        int curRow = 0;
+        for(int i = 0; i<str.length();i++) {
+            s[curRow].push_back(str[i]);
+            if (curRow == 0 || curRow == numRows-1) {
+                goingDown = !goingDown;
+            }
+            curRow += goingDown ? 1 : -1;
+        }
+        string ret;
+        for(int i = 0;i<s.size();i++) {
+            cout<<s[i];
+            ret.append(s[i]);
+        }
+        return ret;
+    }
 
+    
 My Solution: Worked out in Note 7.
 
 class Solution {
