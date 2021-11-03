@@ -27,6 +27,41 @@ Both "apply" and "apple" can be built from other words in the dictionary. Howeve
 
 */
 
+// Set solution
+
+string longestWord(vector<string>& words) {
+        set<string> s (words.begin(), words.end());
+        string st = "";
+        int maxlen = 0;
+        for (string word : words) {
+            string substr = "";
+            for (int i = 0; i<word.length(); i++) {
+                substr += word[i];
+                if(s.find(substr) == s.end()) {
+                    break;
+                }
+            }
+            if (substr.compare(word) == 0) {
+                if (word.length() > maxlen) {
+                    st = word;
+                    maxlen = word.length();
+                } else if (word.length() == maxlen) {
+                    vector<string> s1 {st};
+                    vector<string> s2 {word};
+                    if (lexicographical_compare(s1.begin(), s1.end(), s2.begin(), s2.end()) == false) {
+                        st = word;
+                        maxlen = word.length();
+                    }
+                }
+                
+            }
+        }
+        return st;
+    }
+
+
+// trie solution
+
 #include<bits/stdc++.h>
 #include<algorithm>
 
