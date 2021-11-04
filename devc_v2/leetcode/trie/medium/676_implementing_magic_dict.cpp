@@ -24,6 +24,51 @@ Input: search("hell"), Output: False
 Input: search("leetcoded"), Output: False
 
 */
+// Using map, no trie -  when given a question first before mapping/fixing a data structure first think of brute force.
+map<int, vector<string>> m;
+    
+    MagicDictionary() {
+        
+    }
+    
+    bool isPossible(string s1, string s2) {
+        int replacement = 0;
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1[i] != s2[i]) {
+                if (replacement > 0) {
+                    return false;
+                }
+                replacement++;
+            }
+        }
+        return replacement ? true : false;
+    }
+    
+    void buildDict(vector<string> dictionary) {
+        for(string word : dictionary) {
+            m[word.length()].push_back(word);
+        }
+    }
+    
+    
+    bool search(string searchWord) {
+        if (m.count(searchWord.length()) == 0) {
+            return false;
+        }
+        
+        vector<string> v = m[searchWord.length()];
+        for(string word : v) {
+            if (isPossible(searchWord, word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+// Wont work for all test cases in leetcode, like
+// ["MagicDictionary", "buildDict", "search", "search", "search", "search"]
+//[[], [["hello", "hollo","leetcode"]], ["hello"], ["hhllo"], ["hell"], ["leetcoded"]]
 
 #include<bits/stdc++.h>
 #include<algorithm>
