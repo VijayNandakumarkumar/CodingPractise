@@ -20,7 +20,7 @@ Output: 4
 
 */
 
-// Solution coded on 8/11/21 using vectors
+// Solution coded on 8/11/21 using vectors (better runtime)
 
 typedef pair<int, int> ipair;
     

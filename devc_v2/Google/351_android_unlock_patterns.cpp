@@ -50,7 +50,7 @@ int DFS( vector<bool> &visited, vector<vector<int> > &skip, int cur, int rem) {
     visited[cur] = true;
     
     int res = 0;
-    for(int i = 0;i<=9;i++) {
+    for(int i = 1;i<=9;i++) {
         if(!visited[i] && (skip[cur][i] == 0 || visited[skip[cur][i]])) {
             res += DFS(visited, skip, i, rem - 1);
         }
