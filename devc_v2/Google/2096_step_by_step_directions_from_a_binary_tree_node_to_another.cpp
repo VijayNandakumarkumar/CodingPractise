@@ -43,6 +43,7 @@ Explanation: The shortest path is: 2 → 1.
  */
 class Solution {
 public:
+    /* Our solution
     string getDirections(TreeNode* root, int lval, int rval) {
         if (root == NULL) {
             return "";
@@ -89,5 +90,52 @@ public:
             return root;
         }
         return (right != NULL) ? right : left;
+    }
+    */
+    
+    // Solution without finiding LCA.
+    
+    bool traverse(TreeNode* root, int nodeVal, string& path)
+    {
+        if(root == NULL) return false;
+        
+        if(root->val == nodeVal) return true;
+            
+        bool l = traverse(root->left, nodeVal, path);
+        bool r = traverse(root->right, nodeVal, path);
+        
+        if(!l && !r) return false;
+        
+        if(l) path += 'L';
+        if(r) path += 'R';
+        return true;
+    }
+    
+    string getDirections(TreeNode* root, int startValue, int destValue) {
+        
+        //get path from root
+        string rootToS = "", rootToT = "";
+        traverse(root, startValue, rootToS);
+        traverse(root, destValue, rootToT);
+        
+        reverse(rootToS.begin(), rootToS.end());
+        reverse(rootToT.begin(), rootToT.end());
+        
+        //remove common prefix to get path from LCA
+        int i=0;
+        while(i < rootToS.length() && i < rootToT.length()
+              && rootToS[i] == rootToT[i])
+        {
+            i++;
+        }
+        rootToS = rootToS.substr(i);
+        rootToT = rootToT.substr(i);
+        
+        //form answer
+        string ans = "";
+        for(int i=0; i<rootToS.length(); i++) ans.push_back('U');
+        ans += rootToT;
+        
+        return ans;
     }
 };
