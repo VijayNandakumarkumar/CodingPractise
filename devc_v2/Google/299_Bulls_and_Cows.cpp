@@ -28,6 +28,28 @@ Explanation: Bulls are connected with a '|' and cows are underlined:
 
 class Solution {
 public:
+
+    // 0 ms solution
+
+    string getHint(string s, string g) {
+        
+        vector<int> count (10, 0);
+        int b=0, c=0;
+        for(int i=0; i<s.length(); i++) {
+            if (s[i] == g[i]) {
+                b++;
+            } else {
+                if (count[g[i] - '0'] < 0) c++;
+                if (count[s[i] - '0'] > 0) c++;
+                count[g[i] - '0']++;
+                count[s[i] - '0']--;
+            }
+        }
+        
+        return to_string(b) + "A" + to_string(c) + "B";
+    }
+
+    // 3ms
     string getHint(string s, string g) {
         map<char, set<int>> pos;
         map<char, int> freq;

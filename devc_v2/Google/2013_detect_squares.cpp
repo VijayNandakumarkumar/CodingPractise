@@ -68,9 +68,9 @@ public:
                 continue;
             }
             string topLeft = to_string(x) + to_string(point.second);
-            string topRight = to_string(point.first) + to_string(y);
-            if (freq[topLeft] && freq[topRight]) {
-                res +=  freq[topLeft] * freq[topRight];
+            string bottomRight = to_string(point.first) + to_string(y);
+            if (freq[topLeft] && freq[bottomRight]) {
+                res +=  freq[topLeft] * freq[bottomRight];
             }
         }
         return res;

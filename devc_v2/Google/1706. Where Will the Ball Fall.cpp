@@ -42,6 +42,8 @@ Output: [0,1,2,3,4,-1]
 
 class Solution {
 public:
+
+    //Our Solution, below is same but little simplified code.
     vector<int> findBall(vector<vector<int>>& grid) {
         int m=grid.size(), n=grid[0].size();
         if ((m==1 && n==1) || (n==1)) {
@@ -50,12 +52,12 @@ public:
         vector<int> ans (n, 0);
         
         for (int j=0; j<n; j++) {
-            ans[j] = getBallFall(0, j, ans, grid, m, n, 0);
+            ans[j] = getBallFall(0, j, ans, grid, m, n);
         }
         return ans;
     }
     
-    int getBallFall(int i, int j, vector<int> &ans, vector<vector<int>>& grid, int m, int n, int prevCol) {
+    int getBallFall(int i, int j, vector<int> &ans, vector<vector<int>>& grid, int m, int n) {
         
         if (i==m) {
             return j;
@@ -72,12 +74,12 @@ public:
         if (i>=0 && i<m) {
             if (grid[i][j] == 1) {
                 if (grid[i][j+1] == 1) {
-                    return getBallFall(i+1, j+1, ans, grid, m, n, j);
+                    return getBallFall(i+1, j+1, ans, grid, m, n);
                 }
                 return -1;
             } else {
                 if (grid[i][j-1]==-1) {
-                    return getBallFall(i+1, j-1, ans, grid, m, n, j);
+                    return getBallFall(i+1, j-1, ans, grid, m, n);
                 }
                 return -1;
             }
@@ -85,4 +87,90 @@ public:
         
         return -1;
     }
+
+    class Solution {
+public:
+    /*
+    vector<int> findBall(vector<vector<int>>& grid) {
+        int m=grid.size(), n=grid[0].size();
+        if ((m==1 && n==1) || (n==1)) {
+            return {-1};
+        }
+        vector<int> ans (n, 0);
+        
+        for (int j=0; j<n; j++) {
+            ans[j] = getBallFall(0, j, ans, grid, m, n);
+        }
+        return ans;
+    }
+    
+    int getBallFall(int i, int j, vector<int> &ans, vector<vector<int>>& grid, int m, int n) {
+        
+        if (i==m) {
+            return j;
+        }
+        if (j==0) { 
+            if (grid[i][j]==-1 || n==1) {
+                return -1;
+            }
+        } else if (j==n-1) {
+            if (grid[i][j]==1 || n==1) {
+                return -1;
+            }
+        }
+        if (i>=0 && i<m) {
+            if (grid[i][j] == 1) {
+                if (grid[i][j+1] == 1) {
+                    return getBallFall(i+1, j+1, ans, grid, m, n);
+                }
+                return -1;
+            } else {
+                if (grid[i][j-1]==-1) {
+                    return getBallFall(i+1, j-1, ans, grid, m, n);
+                }
+                return -1;
+            }
+        }
+        
+        return -1;
+    }
+    */
+    
+    
+    int n,m;
+    vector<int> findBall(vector<vector<int>>& grid) {
+        n = grid.size(), m = grid[0].size();
+        vector<int> result(m);
+        for(int i = 0; i < m; i++)
+            result[i] = helper(grid, 0, i);
+        return result;
+    }
+    int helper(vector<vector<int>>& grid, int i, int j){
+        if(i == n)
+            return j;
+        if(grid[i][j] == 1 && (j == m - 1 || grid[i][j + 1] == -1) || grid[i][j] == -1 && (j == 0 || grid[i][j - 1] == 1))
+            return -1;
+        return helper(grid, i + 1, j + grid[i][j]);
+    }
+    
+    /*
+    int n,m;
+    vector<int> findBall(vector<vector<int>>& grid) {
+        n = grid.size(), m = grid[0].size();
+        vector<int> result(m);
+        vector<vector<int>> memo(n, vector<int>(m, -2));
+        for(int i = 0; i < m; i++)
+            result[i] = helper(memo, grid, 0, i);
+        return result;
+    }
+    int helper(vector<vector<int>>& memo, vector<vector<int>>& grid, int i, int j){
+        if(i == n)
+            return j;
+        if(memo[i][j] != -2)
+            return memo[i][j];
+        if(grid[i][j] == 1 && (j == m - 1 || grid[i][j + 1] == -1) || grid[i][j] == -1 && (j == 0 || grid[i][j - 1] == 1))
+            return memo[i][j] = -1;
+        return memo[i][j] = helper(memo, grid, i + 1, j + grid[i][j]);
+    }*/
+};
 };
