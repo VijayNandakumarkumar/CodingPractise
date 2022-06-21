@@ -51,6 +51,22 @@ and so on.
 
 class Solution {
 public:
+
+    // Tech Dose - June 10, 2022
+    vector<int> v;
+    Solution(vector<int>& w) {
+        for (auto i:w) {
+            v.push_back((v.empty() ? 0 : v.back()) + i);
+        }
+    }
+    
+    int pickIndex() {
+        int randNum = rand() % v.back();
+        return upper_bound(v.begin(), v.end(), randNum) - v.begin();
+    }
+
+
+    // Knowledge center
     vector<int> weight;
     int len = 0;
     int prefix_sum = 0;
