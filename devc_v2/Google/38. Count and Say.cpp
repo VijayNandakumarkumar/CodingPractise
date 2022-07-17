@@ -34,6 +34,38 @@ countAndSay(4) = say "21" = one 2 + one 1 = "12" + "11" = "1211"
 
 class Solution {
 public:
+
+	// Same solution.approach as below but dp vector is not needed here.
+
+	class Solution {
+public:
+    
+    string countAndSay(int n) {
+        if (n==1) {
+            return "1";
+        }
+        if (n==2) {
+            return "11";
+        }
+        string str = countAndSay(n-1);
+        
+        string ans="";
+        for (int z=0; z<str.size(); z++) {
+            int count = 1;
+            while(str[z] == str[z+1]) {
+                count++;
+                z++;
+            }
+            if (count>0)
+                ans += to_string(count) + str[z];
+        }
+        
+        return ans;
+    }
+};
+
+// --------
+
     vector<string> dp {31, ""};
     
     string countAndSay(int n) {

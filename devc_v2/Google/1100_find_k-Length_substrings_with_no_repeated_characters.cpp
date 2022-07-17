@@ -23,6 +23,9 @@ Explanation: Notice k can be larger than the length of s. In this case, it is no
 
 class Solution {
 public:
+    // Beloe one is much more efficient - this because it avoid clearinng out the entire set every time.
+    
+    /*
     int numKLenSubstrNoRepeats(string s, int k) {
         if ((k>s.length()) || (k==0) || (s.length()==0)) {
             return 0;
@@ -51,6 +54,36 @@ public:
                 res++;
             }
         }
+        return res;
+    } */
+    
+    
+    int numKLenSubstrNoRepeats(string s, int k) {
+        if ((k>s.length()) || (k==0) || (s.length()==0)) {
+            return 0;
+        } else if (k==1) {
+            return s.length();
+        }
+        set<char> st;
+        int res = 0;
+        int len = s.length();
+        string temp = "";
+        bool found = true;
+        int startInd = 0;
+        for (int i=0; i<len; ) {
+            found = true;
+            if (st.size() == k) {
+                res++;
+                st.erase(s[startInd++]);
+            }
+            if (st.find(s[i]) != st.end()) {
+                st.erase(s[startInd++]);
+                continue;
+            }
+            st.insert(s[i]);
+            i++;
+        }
+        if (st.size() == k) res++;
         return res;
     }
 };
