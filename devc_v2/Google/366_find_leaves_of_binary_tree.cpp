@@ -39,9 +39,30 @@ Output: [[1]]
 class Solution {
 public:
 
+    vector<vector<int>> findLeaves(TreeNode* root) {
+        if(root == NULL) {
+            return {{}};
+        }
+        vector<vector<int>> res;
+        dfs(root, res);
+        return res;
+    }
+    
+    int dfs(TreeNode* root, vector<vector<int>> &res) {
+        if (root == NULL) {
+            return -1;
+        }
+        int height = max(dfs(root->left, res), dfs(root->right, res)) + 1;
+        if (res.size() == height) {
+            res.push_back({});
+        }
+        res[height].push_back(root->val);
+        return height;
+    }
+
 
     //Our solution (Also there is another solution where we can just index the nodes based on their height from bottom and then push them into the respective array index/buckets of leaves.)
-    
+    /*
     vector<vector<int>> findLeaves(TreeNode* root) {
         if(root == NULL) {
             return {{}};
@@ -74,6 +95,7 @@ public:
         }
         return node;
     }
+    */
     
     /* Best Solution
     
