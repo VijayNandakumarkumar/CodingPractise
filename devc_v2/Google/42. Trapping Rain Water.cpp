@@ -28,11 +28,9 @@ Output: 9
 
 */
 
-// Own Solution better than suggesstions.
-
 class Solution {
 public:
-    /*
+    /* Own solution
     int trap(vector<int>& height) {
         stack<int> vols;
         int vol=0;
@@ -68,10 +66,8 @@ public:
         }
         return vol;
     }*/
-
-    // From solution space
-    
-    int trap(vector<int>& height)
+/*  From Solution tab  
+int trap(vector<int>& height)
 {
     if(height.empty())
         return 0;
@@ -91,4 +87,34 @@ public:
     }
     return ans;
 }
+*/
+    // From tech dose
+    int trap(vector<int>& height)
+    {
+        int trapperWater=0;
+        int n = height.size();
+        if (n<=2) {
+            return 0;
+        }
+        int leftMax = height[0], rightMax = height[n-1];
+        int left = 1, right=n-2;
+        while(left<=right) {
+            if (leftMax < rightMax) {
+                if (height[left] > leftMax) {
+                    leftMax = height[left];
+                } else {
+                    trapperWater += leftMax-height[left];
+                }
+                left++;
+            } else {
+                if (height[right] > rightMax) {
+                    rightMax = height[right];
+                } else {
+                    trapperWater += rightMax-height[right];
+                }
+                right--;
+            }
+        }
+        return trapperWater;
+    }
 };
